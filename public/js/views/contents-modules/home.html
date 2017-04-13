@@ -1,0 +1,87 @@
+<!--
+ Copyright (c) 2014, 2017, Oracle and/or its affiliates.
+ The Universal Permissive License (UPL), Version 1.0
+-->
+<div class="oj-hybrid-padding">
+    <div class="oj-flex oj-flex-items-pad oj-panel">
+        <div class="oj-sm-12 oj-lg-6 oj-flex-item demo-layoutshift-A">
+            <div id="collapsiblePage">
+                <div data-bind="ojComponent: {component: 'ojCollapsible', expanded: true}">
+                    <h3 id="h3">Dependency Library</h3>
+                    <div style="border: 1px solid #000;background-color:#f8f8f8" class="oj-collapsible-content oj-component-content">
+                        <ul>
+                            <li> JET Version 2.0</li>
+                            <li> Based on 17.1.3 CECS release, 1.0 CECS Rest Library</li>
+                        </ul>
+                    </div>
+                </div>
+                <div data-bind="ojComponent: {component: 'ojCollapsible', expanded: true}">
+                    <h3 id="h3">Download</h3>
+                    <div style="border: 1px solid #000;background-color:#f8f8f8" class="oj-collapsible-content oj-component-content">
+                        <ul>
+                            <li> Git Repository</li>
+                            <li> .....</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="oj-sm-12 oj-lg-6 oj-flex-item">
+            <div class="oj-flex oj-flex-items-pad">
+                <div class="oj-sm-12 oj-xl-12 oj-flex-item demo-layoutshift-B">
+                    <div data-bind="ojComponent: {component: 'ojCollapsible', expanded: true}">
+                        <h3>Server Setup</h3>
+                        <div id="form-container" class="oj-row oj-form-layout">
+                            <div class="oj-form oj-sm-odd-cols-12 oj-md-odd-cols-2 oj-md-labels-inline">
+                                <div class="oj-flex">
+                                    <div class="oj-flex-item">
+                                        <div class="oj-label oj-component oj-inputtext-label"><div class="oj-label-group"><label for="serverURL" class="oj-component-initnode">CECS URL</label></div></div>
+                                    </div>
+                                    <div class="oj-flex-item">
+                                        <div class="oj-inputtext oj-form-control oj-component"><input id="serverURL" data-bind="ojComponent: {component: 'ojInputText',
+                                        value:serverURL, placeholder: 'Base URL', messagesCustom: validateMsg1}" type="text" placeholder="" class="oj-inputtext-input oj-component-initnode"></div>
+                                        <div style="font-size: 10px; font-style: italic"> Optional. Defaults to server the app is running on. Valid format is http://host:port</div>
+                                    </div>
+                                </div>
+                                <div class="oj-flex">
+                                    <div class="oj-flex-item">
+                                        <div class="oj-label oj-component oj-inputtext-label"><div class="oj-label-group"><label for="username" class="oj-component-initnode">username</label></div></div>
+                                    </div>
+                                    <div class="oj-flex-item">
+                                        <div class="oj-inputtext oj-form-control oj-component"><input id="username" data-bind="ojComponent: {component: 'ojInputText', value:username, placeholder: 'Username', messagesCustom: validateMsg2}" type="text" placeholder="" class="oj-inputtext-input oj-component-initnode"></div>
+                                        <div style="font-size: 10px; font-style: italic">Used to create a basic authInfo token only. Leave authInfo blank if entering username and password.</div>
+                                    </div>
+                                </div>
+                                <div class="oj-flex">
+                                    <div class="oj-flex-item">
+                                        <div class="oj-label oj-component oj-inputpassword-label"><div class="oj-label-group"><label for="password" class="oj-component-initnode">password</label></div></div>
+                                    </div>
+                                    <div class="oj-flex-item">
+                                        <div class="oj-inputpassword oj-form-control oj-component"><input id="password" data-bind="ojComponent: {component: 'ojInputPassword', value:password, placeholder: 'Password', messagesCustom: validateMsg3}" type="password" placeholder="" class="oj-inputpassword-input oj-component-initnode"></div>
+                                        <div style="font-size: 10px; font-style: italic">Used to create a basic authInfo token only. Leave authInfo blank if entering username and password.</div>
+                                    </div>
+                                </div>
+                                <div class="oj-flex">
+                                    <div class="oj-flex-item">
+                                        <div class="oj-label oj-component oj-inputtext-label"><div class="oj-label-group"><label for="authInfo" class="oj-component-initnode">authInfo</label></div></div>
+                                    </div>
+                                    <div class="oj-flex-item">
+                                        <div class="oj-inputtext oj-form-control oj-component"><input id="authInfo" data-bind="ojComponent: {component: 'ojInputText', value:authInfo, placeholder: 'Token', messagesCustom: validateMsg4}" type="text" placeholder="" class="oj-inputtext-input oj-component-initnode"></div>
+                                        <div style="font-size: 10px; font-style: italic"> Required. Accepts a Basic, JWT, or OAuth token . Example: 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCI'</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="oj-row" style="text-align: center;margin-top:20px">
+                                <button id="connectionSubmit" style="display: inline-block;text-align: center;" data-bind="click: connectionSubmit,
+                               ojComponent: { component: 'ojButton', label: 'Apply' }" class="oj-button oj-component oj-enabled oj-button-full-chrome oj-button-text-only oj-component-initnode oj-default"><span class="oj-button-text">Apply</span></button>
+                                <div id="save-message" style="color: green;margin-top:10px"></div>
+                            </div>
+
+                            <div id="home-overlay"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

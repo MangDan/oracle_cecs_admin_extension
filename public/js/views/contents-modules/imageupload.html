@@ -1,0 +1,215 @@
+<div class="oj-flex oj-flex-items-pad">
+    <div class="oj-sm-12 oj-lg-6 oj-flex-item demo-layoutshift-A">
+        <div id='toolbar-container' class="oj-flex-item" style="height:35px">
+            <!-- This css binding applies the 0 to 3 style classes selected above. -->
+            <div id="myToolbar" aria-label="Editing Toolbar" aria-controls="controlled"
+                 data-bind="ojComponent: {component:'ojToolbar'}">
+                <button
+                    data-bind="ojComponent: {component: 'ojButton', label: 'File',menu: '#fileMenu'}">
+                </button>
+                <button
+                    data-bind="ojComponent: {component: 'ojButton', label: 'Reload',menu: '#reloadMenu'}">
+                </button>
+            </div>
+
+            <ul id="fileMenu" style="display:none"
+                data-bind="ojComponent: {component: 'ojMenu', select: menuItemSelect}">
+                <li id="menu_open">
+                    <a href="#"><span class="oj-menu-item-icon demo-icon-font demo-palette-icon-24"></span>Open</a>
+                </li>
+            </ul>
+            <ul id="reloadMenu" style="display:none"
+                data-bind="ojComponent: {component: 'ojMenu', select: menuItemSelect}">
+                <li>
+                    <a href="#"><span class="oj-menu-item-icon oj-fwk-icon oj-fwk-icon-magnifier"></span>Reload Whole Content Cloud Node</a>
+                </li>
+            </ul>
+        </div>
+        <div  class="oj-flex-item oj-panel">
+            <form id="f_content_upload">
+                <div id="collapsiblePage1" style="height:480px">
+                    <!--div id="c1" data-bind="ojComponent: {component: 'ojCollapsible'}">
+                            <h1 id="h1" class="oj-header-border">Header 1 with Border</h1>
+                            <p id="p1">I'm a Collapsible with h1 header</p>
+                    </div>
+                    <div id="c2" data-bind="ojComponent: {component: 'ojCollapsible'}">
+                            <h2 id="h2" class="oj-header-border">Header 2 with Border</h2>
+                            <p id="p2">I'm a Collapsible with h2 header</p>
+                    </div>
+                    <div id="c3" data-bind="ojComponent: {component: 'ojCollapsible'}">
+                            <h3 id="h3" class="oj-header-border">Preview</h3>
+                            <p id="p3">I'm a Collapsible with h3 header Style</p>
+                    </div-->
+                    <div data-bind="ojComponent: {component: 'ojCollapsible', expanded: 'true'}">
+                        <span id="h1" class="oj-sm-6" style="font-size:1.2rem"><span class="demo-icon-font demo-palette-icon-24"></span> Preview</span>
+                        <div>
+                            <div id="preview_initial_message" style="padding:0px 0px 5px 0px">
+                                <div class="oj-panel oj-panel-alt3">Please select an image to upload first (Only JPG, PNG and GIF files are allowed)</div>
+                            </div>
+                            <div id="preview" style="display:none;">
+                                <div style="height:auto;overflow-y:auto;max-height:300px"><img id="previewImg" src="" style="width:100%" alt=""></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="metadata" data-bind="ojComponent: {component: 'ojCollapsible'}">
+                        <span id="h2" class="oj-sm-6" style="font-size:1.2rem"><span class="demo-icon-font demo-info-icon-24"></span> Metadata</span>
+                        <div>
+                            <div id="form-container">
+                                <div class="oj-form-layout">
+                                    <div class="oj-form oj-sm-odd-cols-12 oj-md-odd-cols-4 oj-md-labels-inline">
+                                        <div class="oj-flex">
+                                            <div class="oj-flex-item">
+                                                <label class="oj-label-nocomp" for="inputcontrol3">Title</label>
+                                            </div>
+                                            <div class="oj-flex-item">
+                                                <input id="m_title">
+                                            </div>
+                                        </div>
+                                        <div class="oj-flex">
+                                            <div class="oj-flex-item">
+                                                <label class="oj-label-nocomp" for="inputcontrol3">Keyword</label>
+                                            </div>
+                                            <div class="oj-flex-item">
+                                                <input id="m_keyword">
+                                            </div>
+                                        </div>
+
+                                        <div class="oj-flex">
+                                            <div class="oj-flex-item">
+                                                <label class="oj-label-nocomp" for="inputcontrol3">Security</label>
+                                            </div>
+                                            <div class="oj-flex-item">
+                                                <input id="m_security">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="fileinfo" data-bind="ojComponent: {component: 'ojCollapsible', expanded: 'true'}">
+                        <span id="h2" class="oj-sm-6" style="font-size:1.2rem"><span class="demo-icon-font demo-home-icon-24"></span> Information</span>
+                        <div>
+                            <ul id="listview" aria-label="list with static data" 
+                                data-bind="ojComponent: {component: 'ojListView', selectionMode: 'multiple'}">
+                                <li id="amybartlet">
+                                    <div class="container">
+                                        <div>
+                                            <span class="name"><b>File Name</b>: <span id="fileName" class="oj-text-xs oj-text-secondary-color"></span></span>
+                                        </div>
+                                    </div>
+                                    <div class="container">
+                                        <div>
+                                            <span class="name"><b>File Size</b>: <span id="fileSize" class="oj-text-xs oj-text-secondary-color"></span></span>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" id="jsonInputParameters" name="jsonInputParameters"/>
+                <input type='file' id='primaryFile' name='primaryFile' style="display:none" data-bind="event: {change: changePrimaryFile}"/>
+                <input type="hidden" id="metadataValues" name="metadataValues"/>
+            </form>
+            <div id="uploadDialogWrapper">
+                <div style="display:none" id="dialog_upload" title="Upload Image" 
+                     data-bind="ojComponent:{component: 'ojDialog', initialVisibility: 'hide'}">
+                    <div class ="oj-progressbar-embedded" id="progressbar1" style="display:none" data-bind="ojComponent:{component: 'ojProgressbar', value: -1}"></div>
+                    <div class="oj-dialog-body">
+                        <div id="dialog_message"></div>
+                    </div>
+                    <div class="oj-dialog-footer">
+                        <button id="uploadButton" data-bind="click: clickUploadBtn, ojComponent: {component: 'ojButton', label: 'UPLOAD'}"> </button>
+                        <button id="cancelButton" data-bind="click: clickCancelBtn, ojComponent: {component: 'ojButton', label: 'CANCEL'}"> </button>
+                    </div>
+                </div>
+                <!--button id="buttonOpener" data-bind="ojComponent: {component: 'ojButton', label: 'Open Dialog'}"></button-->
+
+            </div>
+            <div id="createFolderDialogWrapper">
+                <div style="display:none" id="dialog_create_folder" title="Create Folder" 
+                     data-bind="ojComponent:{component: 'ojDialog', initialVisibility: 'hide'}">
+                    <div class="oj-dialog-body">
+                        <div id="create_folder_dialog_message">
+                            <div class="oj-flex">
+                                    <div class="oj-flex-item">
+                                        <div class="oj-label oj-component oj-inputtext-label"><div class="oj-label-group"><label for="serverURL" class="oj-component-initnode">Folder Name</label></div></div>
+                                    </div>
+                                    <div class="oj-flex-item">
+                                        <div class="oj-inputtext oj-form-control oj-component"><input id="serverURL" data-bind="ojComponent: {component: 'ojInputText',
+                                        value:createFolderName, placeholder: 'Folder Name', messagesCustom: validateCreateFolderMsg}" type="text" placeholder="" class="oj-inputtext-input oj-component-initnode"></div>
+                                        <div style="font-size: 10px; font-style: italic"> required.</div>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="oj-dialog-footer">
+                        <button id="createFolderButton" data-bind="click: clickCreateFolderBtn, ojComponent: {component: 'ojButton', label: 'CREATE'}"> </button>
+                        <button id="cancelCreateFolderButton" data-bind="click: clickCancelCreateFolderBtn, ojComponent: {component: 'ojButton', label: 'CANCEL'}"> </button>
+                    </div>
+                </div>
+                <!--button id="buttonOpener" data-bind="ojComponent: {component: 'ojButton', label: 'Open Dialog'}"></button-->
+
+            </div>
+            <div id="deleteContentDialogWrapper">
+                <div style="display:none" id="dialog_delete_content" title="Delete Folder/Content" 
+                     data-bind="ojComponent:{component: 'ojDialog', initialVisibility: 'hide'}">
+                    <div class="oj-dialog-body">
+                        <div id="delete_content_dialog_message">Are you sure you want to delete this folder/content?</div>
+                    </div>
+                    <div class="oj-dialog-footer">
+                        <button id="deleteContentButton" data-bind="click: clickDeleteContentBtn, ojComponent: {component: 'ojButton', label: 'DELETE'}"> </button>
+                        <button id="cancelDeleteContentButton" data-bind="click: clickCancelDeleteContentBtn, ojComponent: {component: 'ojButton', label: 'CANCEL'}"> </button>
+                    </div>
+                </div>
+                <!--button id="buttonOpener" data-bind="ojComponent: {component: 'ojButton', label: 'Open Dialog'}"></button-->
+
+            </div>
+        </div>
+    </div>
+    <div class="oj-sm-12 oj-lg-6 oj-flex-item">
+        <div class="oj-flex oj-flex-items">
+            <div class="oj-sm-12 oj-xl-12 oj-flex-item demo-layoutshift-B">
+                <div class="oj-flex" style="height:35px">
+                    <!--div class="oj-flex-item-pad oj-sm-4 oj-xl-4">
+                        <button id="uploadDialogBtn" class="oj-button-sm oj-button-confirm" data-bind="click: clickUploadDialogBtn, ojComponent: {component: 'ojButton', label: 'UPLOAD', chroming: 'full',icons: {start:'oj-fwk-icon oj-fwk-icon-clock'}}"> </button>
+                    </div-->
+                </div>
+                <div class="oj-flex-item oj-panel">
+                    <div id="collapsiblePage2" style="height:480px">
+                        <div id="docsfolder" data-bind="ojComponent: {component: 'ojCollapsible', expanded: 'true'}">
+                            <span class="oj-sm-6" style="font-size:1.2rem"><span class="demo-icon-font demo-home-icon-24"></span> Content Cloud</span>
+                            <div id="tree" style="width:100%; height: 420px;overflow-y:auto" data-bind="ojComponent:{
+                                                                                                                        component: 'ojTree',
+                                                                                                                        hover: setActiveContextNode,
+                                                                                                                        selectionMode: 'single',
+                                                                                                                        data:{ ajax: {
+                                                                                                                                                        'type' : 'GET',
+                                                                                                                                                        'url' : loadNode,
+                                                                                                                                                        'success' : loadSuccess,
+                                                                                                                                                        'error' : loadError,
+                                                                                                                                                        'headers' : getHeaders()
+                                                                                                                                }
+                                                                                                                        },
+                                                                                                                        dnd: {reorder: 'enable'},
+                                                                                                                        types:getTypes(),
+                                                                                                                        optionChange: treeOptionChange,
+                                                                                                                        expand: treeExpand,
+                                                                                                                        contextMenu: '#folderContextMenu'
+                                                                                                                }">
+                            </div>
+                        </div>
+
+                        <ul id="folderContextMenu" data-bind="ojComponent: {component: 'ojMenu', select: selectFolderContextMenu}" style="display:none" aria-label="Edit">
+                            <li id="uploadContentMenu"><a href="#">Upload Content</a></li>
+                            <li id="divider"></li>
+                            <li id="createFolderMenu"><a href="#">Create Folder</a></li>
+                            <li id="deleteContentMenu"><a href="#">Delete Folder/Content</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

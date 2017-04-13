@@ -1,0 +1,34 @@
+<div class="oj-flex oj-flex-items-pad">
+    <div class="oj-sm-12 oj-lg-2 oj-flex-item demo-layoutshift-A">
+        <!-- navigation -->
+        <div id="navlist">
+            <div id="navlistcontainer" role="navigation" style="max-width:300px">
+                <div  aria-label="Choose a navigation item" data-bind="ojComponent:{
+                                                                                                                    component: 'ojNavigationList',
+                                                                                                                    display: large() ? 'all' : 'icons',
+                                                                                                                    selection: contentRouter.stateId,
+                                                                                                                    data: navDataSource,
+                                                                                                                    item: { template: 'navTemplate' }
+                                                                                                        }">
+                </div>
+            </div>
+            <br>
+            <!--div>
+                <p class="bold">Last selected list item:
+                    <span id="result_menu" data-bind='text: selectedMenu'></span>
+                </p>
+                <p class="bold">selected content id:
+                    <span id="result_content" data-bind='text: selectedContent'></span>
+                </p>
+            </div-->
+        </div>
+        <!-- navigation -->
+    </div>
+    <div class="oj-sm-12 oj-lg-10 oj-flex-item">
+        <div class="oj-flex oj-flex-items-pad">
+            <div class="oj-sm-12 oj-xl-12 oj-flex-item demo-layoutshift-B">
+                <div id="content" style="padding:0px 10px 0px 10px" data-bind="ojModule: moduleConfig"></div>
+            </div>    
+        </div>
+    </div>
+</div>

@@ -1,0 +1,24 @@
+[
+  { 
+    "title": "News",
+    "attr": {"id": "news"}
+  },
+  {
+    "title": "Links", 
+    "attr": {"id": "links"},
+    "children" : []
+  },
+  { 
+    "title": "Sponsors",
+    "attr": {"id": "sponsors"}
+  },
+  { 
+    "title": "Corporate",
+    "attr": {"id": "corporate"}
+  },
+  { 
+    "title": "References",
+    "attr": {"id": "references"},
+    "children" : []
+  }
+]
