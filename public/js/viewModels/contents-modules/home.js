@@ -65,7 +65,7 @@ define(['ojs/ojcore', 'knockout', 'jquery'],
                 self.handleDetached = function (info) {
                     // Implement if needed
                 };
-                
+                //User can not be authorized. provide login detail
                 self.validateMsg1 = ko.observable();
                 self.validateMsg2 = ko.observable();
                 self.validateMsg3 = ko.observable();
@@ -81,7 +81,18 @@ define(['ojs/ojcore', 'knockout', 'jquery'],
                         return null;
                     }
                 });
-
+                
+                self.settings_message = ko.pureComputed(function() {
+                    console.log("settings_message");
+                    console.log(self.serverURL());
+                    console.log(self.authInfo());
+                    if((self.serverURL() !== '' && self.serverURL() !== null) && self.authInfo() !== '' && self.authInfo() !== null) {
+                        return "Settings are stored in the session storage.";
+                    } else {
+                        return "Require url and login detail";
+                    }
+                });
+                
                 this.connectionSubmit = function (data, event) {
                     
                     if (typeof (Storage) !== "undefined") {

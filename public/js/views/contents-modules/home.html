@@ -25,10 +25,10 @@
                     </div>
                 </div>
                 <div data-bind="ojComponent: {component: 'ojCollapsible', expanded: true}">
-                    <h3 id="h3">Installation</h3>
+                    <h3 id="h3">Run</h3>
                     <div style="border: 1px solid #000;background-color:#f8f8f8" class="oj-collapsible-content oj-component-content">
                         <ul>
-                            <li>cd cecs_admin_extension</li>
+                            <li>cd oracle_cecs_admin_extension</li>
                             <li>npm start</li>
                         </ul>
                     </div>
@@ -84,7 +84,7 @@
                             <div class="oj-row" style="text-align: center;margin-top:20px">
                                 <button id="connectionSubmit" style="display: inline-block;text-align: center;" data-bind="click: connectionSubmit,
                                ojComponent: { component: 'ojButton', label: 'Apply' }" class="oj-button oj-component oj-enabled oj-button-full-chrome oj-button-text-only oj-component-initnode oj-default"><span class="oj-button-text">Apply</span></button>
-                                <div id="save-message" style="color: green;margin-top:10px"></div>
+                                <div id="setting-message" style="color: green;margin-top:10px" data-bind="text:settings_message"></div>
                             </div>
 
                             <div id="home-overlay"></div>
