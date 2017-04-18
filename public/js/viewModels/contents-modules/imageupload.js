@@ -266,8 +266,21 @@ define(['ojs/ojcore', 'knockout', 'jquery'],
                 function content_upload() {
                     //console.log(getHeaders());
                     $("#jsonInputParameters").val("{\"parentID\":\"" + self.nodeId + "\",\"duplicateResolution\":\"TimeStampSuffix\"}");
-                    var formData = new FormData($('#f_content_upload')[0]);
-                    //console.log(formData);
+                    
+                    //var formData = new FormData($('#f_content_upload')[0]);
+                    var formData = new FormData();
+                   //console.log(formData);
+                    
+                    
+                    var primaryFile = $("#primaryFile")[0].files[0];
+                    
+                    //$("#metadataValues").val("{\"collection\":\"Imaging_Metadata\",\"01_Title\":\"" + m_title + "\",\"02_Security\":\"" + m_security + "\",\"03_Keyword\":\"" + m_keyword + "\"}");
+                    formData.append("jsonInputParameters", JSON.stringify({"parentID":self.nodeId,"duplicateResolution":"TimeStampSuffix"}));
+                    formData.append("primaryFile", primaryFile);
+                    
+                    //var parent = new Blob([{"collection":"Imaging_Metadata","01_Title":m_title,"02_Security":m_security,"03_Keyword":m_keyword}], { type: "application/json"});
+                    //formData.append("metadataValues", JSON.stringify({"collection":"Imaging_Metadata","01_Title":m_title,"02_Security":m_security,"03_Keyword":m_keyword}));
+                    
                     $.ajax({
                         url: sessionStorage.getItem("serverURL")+ '/documents/api/1.1/files/data',
                         type: 'POST',
@@ -295,13 +308,17 @@ define(['ojs/ojcore', 'knockout', 'jquery'],
                 };
             
                 function assignValuesToMetadataCollection(fileId) {
+                    var m_title = $("#m_title").val();
+                    var m_keyword = $("#m_keyword").val();
+                    var m_security = $("#m_security").val();
+                    
                     $.ajax({
                         url: sessionStorage.getItem("serverURL") + "/documents/api/1.1/files/" + fileId + "/metadata",
                         type: 'POST',
                         headers: {
                             "Authorization": sessionStorage.getItem("authInfo")
                         },
-                        data: $("#metadataValues").val(),
+                        data: JSON.stringify({"collection":"Imaging_Metadata","01_Title":m_title,"02_Security":m_security,"03_Keyword":m_keyword}),
                         //accept: "application/json",
                         //cache: false,
                         //contentType:"application/json; charset=UTF-8",
