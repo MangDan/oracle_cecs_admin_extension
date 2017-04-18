@@ -169,7 +169,7 @@ define(['ojs/ojcore', 'knockout', 'jquery'],
                     var m_keyword = $("#m_keyword").val();
                     var m_security = $("#m_security").val();
 
-                    $("#metadataValues").val("{\"Collection\":\"Imaging_Metadata\",\"01_Title\":\"" + m_keyword + "\",\"02_Security\":\"" + m_security + "\",\"03_Keyword\":\"" + m_title + "\"}");
+                    $("#metadataValues").val("{\"collection\":\"Imaging_Metadata\",\"01_Title\":\"" + m_title + "\",\"02_Security\":\"" + m_security + "\",\"03_Keyword\":\"" + m_keyword + "\"}");
                     content_upload();
                 };
                 
